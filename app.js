@@ -32,74 +32,6 @@ let pinger = (ip) => {
         })
     })   
 }
-function doneCb (error, target) {
-    if (error)
-        console.log (target + ": " + error.toString ());
-    else
-        console.log (target + ": Done");  
-
-        trace_res.forEach(trace_ip => {
-        setInterval(() => {
-            pinger(trace_ip)
-            .then(ms => {
-                if (ping_res[trace_ip] == undefined){
-                    ping_res[trace_ip] = {}
-                }
-                var time = "";
-                let date_ob = new Date(Date.now());
-                time = date_ob.toLocaleString('en-US-u-ca-persian', {
-                    timeZone: 'Asia/Tehran',
-                    hourCycle: 'h24'
-                });
-                ping_res[trace_ip][time] = ms;
-                // console.log(ping_res);
-                
-            })
-            .catch(e => {
-                console.log(e)
-            })
-        }, 1000)
-    });
-}
-function doneCb1 (error, target) {
-    if (error)
-        console.log (target + ": " + error.toString ());
-    else
-        console.log (target + ": Done");  
-
-        trace_res.forEach(trace_ip => {
-        setInterval(() => {
-            pinger(trace_ip)
-            .then(ms => {
-                console.log(trace_ip + "_" + ms);
-                
-                if (ping_res[trace_ip] == undefined){
-                    ping_res[trace_ip] = {}
-                }
-                var time = "";
-                let date_ob = new Date(Date.now());
-                time = date_ob.toLocaleString('en-US-u-ca-persian', {
-                    timeZone: 'Asia/Tehran',
-                    hourCycle: 'h24'
-                });;
-
-                if (ping_res[trace_ip]["date"] == undefined){
-                    ping_res[trace_ip]["date"] = []
-                }
-                if (ping_res[trace_ip]["ms"] == undefined){
-                    ping_res[trace_ip]["ms"] = []
-                }
-
-                
-                ping_res[trace_ip]["date"].push(time) ;
-                ping_res[trace_ip]["ms"].push( ms) ;
-            })
-            .catch(e => {
-                console.log(e)
-            })
-        }, 1000)
-    });
-}
 function doneCb3 (error, target) {
     if (error)
         console.log (target + ": " + error.toString ());
@@ -164,32 +96,26 @@ function iperf_handler(iperf_ip, text_file) {
     exec('iperf3 -c ' + iperf_ip + " -J > " + save_dir + text_file + ".txt");
 }
 
-app.get('/download', function(req, res){    
+app.get('/list', function(req, res){    
     fs.readdir(save_dir, function(err, items) {   
         html_ret = "";   
         for (var i=0; i<items.length; i++) {
             if(items[i].substr(items[i].length - 4) == ".txt" || items[i].substr(items[i].length - 4) == ".csv"){
-                html_ret += "<a href=\"" + items[i]+ "\">" + items[i] + "</a><br>";
-
+                html_ret += "<a href=/download/?dl=" + items[i]+ ">" + items[i] + "</a><br>";
             }
         }
-
         res.send(html_ret);
-        // res.download(save_dir + "/" + items[1]); // Set disposition and send it.
     });    
 });
 
-app.get('/asd', function(req, res){    
-    setTimeout(() => {
-        exec('rm result.zip');     
-        exec('zip result.zip results -r');     
-    }, 5)
-    res.download(save_dir + "/../result.zip"); // Set disposition and send it.    
+app.get('/download', function(req, res){    
+    let url = req.query.dl;
+    res.download(save_dir + "/" + url); // Set disposition and send it.
 });
-
+app.get('/start', function(req, res){
+    
+});
 app.listen(3000, () => console.log(`App listening on port 3000!`))
-
-
 
 
 // main();
