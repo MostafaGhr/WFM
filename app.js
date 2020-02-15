@@ -27,7 +27,7 @@ stdin.addListener("data", function(d) {
     }
   });
 
-app.get('/list', function(req, res){
+app.get('/list',(req, res) => {
     fs.readdir(save_dir, function(err, items) {   
         html_ret = "";   
         for (var i=0; i<items.length; i++) {
@@ -39,7 +39,7 @@ app.get('/list', function(req, res){
     });    
 });
 
-app.get('/download', function(req, res){
+app.get('/download',(req, res) => {
     let url = req.query.dl;
     res.download(save_dir + "/" + url); // Set disposition and send it.
 });
@@ -48,7 +48,7 @@ app.get('/uptrace', (req, res) =>{
     myfunc.uptrace();
 });
 
-app.get('/start', function(req, res){ 
+app.get('/start',(req, res) => { 
     myfunc.trace_plus_ping(ping_dest, trace_count);
     console.log("test started");
     
