@@ -1,10 +1,10 @@
 const save_dir = "./results/";
 
 
-let ping_intervals = 0.5;
-let ping_clock_before = 60;
+let ping_intervals = 1;
+let ping_clock_before = 5;
 let iperf_clock = 1;
-let ping_clock_after = 60;
+let ping_clock_after = 5;
 let iperf_server_address = "172.21.33.189";
 let iperf_dest_file = "iperf_test";
 
