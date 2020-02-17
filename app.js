@@ -2,14 +2,17 @@ const fs = require("fs");
 const { exec } = require('child_process');
 const express = require('express');
 const app = express();
-settings = require('./settings.js');
 
+settings = require('./settings.js');
 myfunc = require('./depend.js');
+cast = require('./request.js');
 
 exec('mkdir ' + settings.save_dir);
 myfunc.trace_update();
+
 //save in 
 // myfunc.init_ping(ping_dest, trace_count);
+cast.send_broadcast();
 
 app.get('/list',(req, res) => {
     fs.readdir(settings.save_dir, function(err, items) {   
