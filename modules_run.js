@@ -3,9 +3,9 @@ const { exec } = require('child_process');
 const express = require('express');
 const app = express();
 
-settings = require('./settings.js');
-myfunc = require('./depend.js');
-cast = require('./request.js');
+settings = require('./TestModules/settings.js');
+myfunc = require('./TestModules/depend.js');
+cast = require('./TestModules/request.js');
 
 exec('mkdir ' + settings.save_dir);
 myfunc.trace_update();

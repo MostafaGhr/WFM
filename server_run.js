@@ -2,7 +2,7 @@ var dgram = require('dgram');
 var client = dgram.createSocket('udp4');
 var PORT = 6024;
 
-let sender = require('./send_sync_signal.js')
+let sender = require('./SyncServer/send_sync_signal.js')
 
 let raspberry_ip_list = [];
 
