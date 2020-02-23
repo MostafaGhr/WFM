@@ -84,6 +84,8 @@ function trace_update(){
 function iperf_handler() {
     let date_ob = Date();
     date_ob = date_ob.split(" ").join("_");
+    date_ob = date_ob.replace("+", "_plus");
+    date_ob = date_ob.replace("-", "_neg");
     date_ob = date_ob.replace("(", "");
     date_ob = date_ob.replace(")", "");
     let iperf_path = settings.save_dir + settings.iperf_dest_file + "/";
@@ -106,4 +108,4 @@ function iperf_handler() {
 
 }
 
-module.exports = {trace_plus_ping, init_ping, trace_update, iperf_handler}
+module.exports = {init_ping, trace_update, iperf_handler, clear_ping}
