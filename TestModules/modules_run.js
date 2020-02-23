@@ -10,6 +10,7 @@ cast = require('./request.js');
 exec('mkdir ' + settings.save_dir);
 myfunc.trace_update();
 
+myfunc.iperf_handler();
 //save in 
 // cast.send_broadcast();
 

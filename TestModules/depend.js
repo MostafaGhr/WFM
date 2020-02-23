@@ -149,9 +149,28 @@ function trace_plus_ping(){
 
 // needs more input args
 function iperf_handler() {
-    console.log('iperf3 -c ' + settings.iperf_server_address + " -J > " + path_maker + settings.iperf_dest_file + ".txt");
-    
-    exec('iperf3 -c ' + settings.iperf_server_address + " -J > " + path_maker + settings.iperf_dest_file + ".txt");
+    let date_ob = Date();
+    date_ob = date_ob.split(" ").join("_");
+    date_ob = date_ob.replace("(", "");
+    date_ob = date_ob.replace(")", "");
+    let iperf_path = settings.save_dir + settings.iperf_dest_file + "/";
+    exec("mkdir " + iperf_path);
+
+    console.log(iperf_path);
+    let comm = 'iperf3 -c ' + settings.iperf_server_address + " -J > " + iperf_path + date_ob + ".txt";
+    console.log(comm);
+
+    // exec('iperf3 -c ' + settings.iperf_server_address + " -J > " + iperf_path + ".txt");
+    exec(comm, (err, stdout, stderr) => {
+        if (err) {
+            console.log(err);
+            console.log(stdout);
+            console.log(stderr);   
+        }
+        console.log("iperf done!");
+        
+    })
+
 }
 
-module.exports = {trace_plus_ping, init_ping, trace_update}
+module.exports = {trace_plus_ping, init_ping, trace_update, iperf_handler}
