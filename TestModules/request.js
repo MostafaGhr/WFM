@@ -1,6 +1,6 @@
 var dgram = require('dgram'); 
 var server = dgram.createSocket("udp4"); 
-const settings = require("./settings.js")
+const settings = require("./../config.js")
 
 function send_broadcast(){
     server.bind(() => {

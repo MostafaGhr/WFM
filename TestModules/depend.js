@@ -3,7 +3,7 @@ const { Parser } = require('json2csv');
 const fs = require("fs");
 traceroute = require('traceroute');
 var ping = require('ping');
-settings = require('./settings.js');
+settings = require('./../config.js');
 
 let ping_res = {};
 let trace_res = [];
