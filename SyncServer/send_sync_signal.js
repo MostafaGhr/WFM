@@ -27,26 +27,29 @@ function send_uptrace(ip_list){
     });
 }
 function send_start(ip_list){
-    ip_list.forEach(rasp_ip => {
-        options = {
-            host: rasp_ip,
-            port: 3000,
-            path: '/teststart',
-            method: 'GET'
-            };
-        var req = http.request(options, res => {
-            if(res.statusCode == 200){
-                console.log(options.host + " has confirmed " + options.path + " requset!");
-                
-            }
-            // res.on('data', d => {
-            //     process.stdout.write(d)
-            // })
-        })
-        req.on('error', error => {
-            console.error(error)
-        })
-        req.end()
+    ip_list.forEach((rasp_ip , indx) => {
+        setTimeout(() => {
+            options = {
+                host: rasp_ip,
+                port: 3000,
+                path: '/teststart',
+                method: 'GET'
+                };
+            var req = http.request(options, res => {
+                if(res.statusCode == 200){
+                    console.log(options.host + " has confirmed " + options.path + " requset!");
+                    
+                }
+                // res.on('data', d => {
+                //     process.stdout.write(d)
+                // })
+            })
+            req.on('error', error => {
+                console.error(error)
+            })
+            req.end()
+        // 2000ms offset before test starts
+        }, indx * 1000 * settings.iperf_dist + 2000)
     });
 }
 module.exports = {send_uptrace, send_start}

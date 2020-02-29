@@ -7,9 +7,9 @@ let sender = require('./send_sync_signal.js')
 
 let raspberry_ip_list = [];
 
-setInterval(() =>{
+setInterval(() => {
     sender.send_start(raspberry_ip_list);
-
+    
 }, settings.iperf_interval * 1000);
 
 client.on('listening', () => {
