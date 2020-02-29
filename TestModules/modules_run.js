@@ -47,7 +47,7 @@ app.get('/updatetrace', (req, res) =>{
 });
 
 app.get('/teststart',(req, res) => { 
-    myfunc.trace_plus_ping();
+    myfunc.iperf_handler();
     console.log("test started");
     
     res.send("test initiated!");
