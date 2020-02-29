@@ -19,6 +19,5 @@ let iperf_interval = 10;
 let iperf_server_address = "172.21.33.189";
 let iperf_dest_file = "iperf_results";
 
-module.exports = {save_dir, ping_intervals, ping_clock_before, 
-    iperf_clock, ping_clock_after, iperf_server_address, iperf_dest_file, destination, trace_depth,
-    PORT, BROADCAST_ADDR}
+module.exports = {save_dir, ping_intervals, iperf_server_address, iperf_dest_file, 
+    destination, trace_depth, PORT, BROADCAST_ADDR}
