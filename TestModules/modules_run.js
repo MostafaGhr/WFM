@@ -10,8 +10,8 @@ cast = require('./request.js');
 exec('mkdir ' + settings.save_dir);
 myfunc.trace_update();
 
-myfunc.iperf_handler();
-// cast.send_broadcast();
+// myfunc.iperf_handler();
+cast.send_broadcast();
 
 myfunc.init_ping();
 
