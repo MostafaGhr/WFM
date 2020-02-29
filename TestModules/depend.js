@@ -92,7 +92,7 @@ function iperf_handler() {
     exec("mkdir " + iperf_path);
 
     // command to execute!
-    let comm = 'iperf3 -c ' + settings.iperf_server_address + " -J > " + iperf_path + date_ob + ".txt";
+    let comm = 'iperf3 -c ' + settings.iperf_server_address + "-p" +  + " -J > " + iperf_path + date_ob + ".txt";
     
     console.log(comm);
 

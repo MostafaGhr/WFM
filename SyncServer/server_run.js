@@ -18,6 +18,8 @@ client.on('listening', () => {
 client.on('message', (message, rinfo) => {
     if(raspberry_ip_list.find((element) => { return element == rinfo.address; }) == undefined){
         raspberry_ip_list.push(rinfo.address);
+        console.log(rinfo.address + " was added to ip list");
+        
     }
     
     console.log('Message from: ' + rinfo.address + ':' + rinfo.port +' - ' + message);
