@@ -13,8 +13,8 @@ var BROADCAST_ADDR = "192.168.1.255";
 
 // test settings
 let iperf_duration = 10;
-let iperf_interval = 20;
-let iperf_dist = 2;
+let iperf_interval = 50;
+let iperf_dist = 12;
 
 //iperf settings
 let iperf_port_address = "5201";

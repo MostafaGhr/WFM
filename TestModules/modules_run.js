@@ -60,6 +60,14 @@ app.get('/pingstop',(req, res) => {
     res.send("pinging stoped!");
 });
 
+app.get('/pingstart',(req, res) => { 
+    myfunc.init_ping();
+    console.log("pinging stoped");
+    
+    res.send("pinging stoped!");
+});
+
+
 app.listen(3000, () => console.log('App listening on port 3000!'));
 
 
