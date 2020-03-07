@@ -6,12 +6,14 @@ const app = express();
 settings = require('./../config.js');
 myfunc = require('./depend.js');
 cast = require('./request.js');
+senderr = require('./staticreq.js')
 
 exec('mkdir ' + settings.save_dir);
 myfunc.trace_update();
 
 // myfunc.iperf_handler();
-cast.send_broadcast();
+// cast.send_broadcast();
+senderr.sender();
 
 myfunc.init_ping();
 
